@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PedidoViewDlg" widgetVar="PedidoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPedidoTitle}">
+            <h:form id="PedidoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pedidoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPedidoLabel_idpedido}"/>
+                        <h:outputText value="#{pedidoController.selected.idpedido}" title="#{bundle.ViewPedidoTitle_idpedido}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_fechaHoraEnt}"/>
+                        <h:outputText value="#{pedidoController.selected.fechaHoraEnt}" title="#{bundle.ViewPedidoTitle_fechaHoraEnt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_fechaHoraSol}"/>
+                        <h:outputText value="#{pedidoController.selected.fechaHoraSol}" title="#{bundle.ViewPedidoTitle_fechaHoraSol}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_latitudSol}"/>
+                        <h:outputText value="#{pedidoController.selected.latitudSol}" title="#{bundle.ViewPedidoTitle_latitudSol}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_longitudSol}"/>
+                        <h:outputText value="#{pedidoController.selected.longitudSol}" title="#{bundle.ViewPedidoTitle_longitudSol}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_latitudEnt}"/>
+                        <h:outputText value="#{pedidoController.selected.latitudEnt}" title="#{bundle.ViewPedidoTitle_latitudEnt}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_longitudEnt}"/>
+                        <h:outputText value="#{pedidoController.selected.longitudEnt}" title="#{bundle.ViewPedidoTitle_longitudEnt}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_direccionEnt}"/>
+                        <h:outputText value="#{pedidoController.selected.direccionEnt}" title="#{bundle.ViewPedidoTitle_direccionEnt}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_valorBruto}"/>
+                        <h:outputText value="#{pedidoController.selected.valorBruto}" title="#{bundle.ViewPedidoTitle_valorBruto}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_descuento}"/>
+                        <h:outputText value="#{pedidoController.selected.descuento}" title="#{bundle.ViewPedidoTitle_descuento}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_iva}"/>
+                        <h:outputText value="#{pedidoController.selected.iva}" title="#{bundle.ViewPedidoTitle_iva}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_fechaHoraDes}"/>
+                        <h:outputText value="#{pedidoController.selected.fechaHoraDes}" title="#{bundle.ViewPedidoTitle_fechaHoraDes}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_observacion}"/>
+                        <h:outputText value="#{pedidoController.selected.observacion}" title="#{bundle.ViewPedidoTitle_observacion}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_calificacion}"/>
+                        <h:outputText value="#{pedidoController.selected.calificacion}" title="#{bundle.ViewPedidoTitle_calificacion}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_nit}"/>
+                        <h:outputText value="#{pedidoController.selected.nit}" title="#{bundle.ViewPedidoTitle_nit}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_iddomicilio}"/>
+                        <h:outputText value="#{pedidoController.selected.iddomicilio}" title="#{bundle.ViewPedidoTitle_iddomicilio}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_idestado}"/>
+                        <h:outputText value="#{pedidoController.selected.idestado}" title="#{bundle.ViewPedidoTitle_idestado}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_idmedPago}"/>
+                        <h:outputText value="#{pedidoController.selected.idmedPago}" title="#{bundle.ViewPedidoTitle_idmedPago}"/>
+                        <h:outputText value="#{bundle.ViewPedidoLabel_usuario}"/>
+                        <h:outputText value="#{pedidoController.selected.usuario}" title="#{bundle.ViewPedidoTitle_usuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PedidoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

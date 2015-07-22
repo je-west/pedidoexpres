@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MvpedidoViewDlg" widgetVar="MvpedidoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMvpedidoTitle}">
+            <h:form id="MvpedidoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mvpedidoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMvpedidoLabel_idmvpedido}"/>
+                        <h:outputText value="#{mvpedidoController.selected.idmvpedido}" title="#{bundle.ViewMvpedidoTitle_idmvpedido}"/>
+                        <h:outputText value="#{bundle.ViewMvpedidoLabel_cantidad}"/>
+                        <h:outputText value="#{mvpedidoController.selected.cantidad}" title="#{bundle.ViewMvpedidoTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewMvpedidoLabel_valorunit}"/>
+                        <h:outputText value="#{mvpedidoController.selected.valorunit}" title="#{bundle.ViewMvpedidoTitle_valorunit}"/>
+                        <h:outputText value="#{bundle.ViewMvpedidoLabel_idpedido}"/>
+                        <h:outputText value="#{mvpedidoController.selected.idpedido}" title="#{bundle.ViewMvpedidoTitle_idpedido}"/>
+                        <h:outputText value="#{bundle.ViewMvpedidoLabel_idproducto}"/>
+                        <h:outputText value="#{mvpedidoController.selected.idproducto}" title="#{bundle.ViewMvpedidoTitle_idproducto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MvpedidoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

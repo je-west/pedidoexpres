@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MvpedidoCreateDlg" widgetVar="MvpedidoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMvpedidoTitle}">
+            <h:form id="MvpedidoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mvpedidoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMvpedidoLabel_idmvpedido}" for="idmvpedido" />
+                        <p:inputText id="idmvpedido" value="#{mvpedidoController.selected.idmvpedido}" title="#{bundle.CreateMvpedidoTitle_idmvpedido}" required="true" requiredMessage="#{bundle.CreateMvpedidoRequiredMessage_idmvpedido}"/>
+                        <p:outputLabel value="#{bundle.CreateMvpedidoLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{mvpedidoController.selected.cantidad}" title="#{bundle.CreateMvpedidoTitle_cantidad}" />
+                        <p:outputLabel value="#{bundle.CreateMvpedidoLabel_valorunit}" for="valorunit" />
+                        <p:inputText id="valorunit" value="#{mvpedidoController.selected.valorunit}" title="#{bundle.CreateMvpedidoTitle_valorunit}" />
+                        <p:outputLabel value="#{bundle.CreateMvpedidoLabel_idpedido}" for="idpedido" />
+                        <p:selectOneMenu id="idpedido" value="#{mvpedidoController.selected.idpedido}" >
+                            <f:selectItems value="#{pedidoController.itemsAvailableSelectOne}"
+                                           var="idpedidoItem" itemLabel="#{idpedidoItem.idpedido}"
+                                           itemValue="#{idpedidoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMvpedidoLabel_idproducto}" for="idproducto" />
+                        <p:selectOneMenu id="idproducto" value="#{mvpedidoController.selected.idproducto}" required="true" requiredMessage="#{bundle.EditMvpedidoRequiredMessage_idproducto}">
+                            <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
+                                           var="idproductoItem" itemLabel="#{idproductoItem.nombre}"
+                                           itemValue="#{idproductoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{mvpedidoController.create}" value="#{bundle.Save}" update="display,:MvpedidoListForm:datalist,:growl" oncomplete="handleSubmit(args,'MvpedidoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MvpedidoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DomicilioEditDlg" widgetVar="DomicilioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDomicilioTitle}">
+            <h:form id="DomicilioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{domicilioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDomicilioLabel_iddomicilio}" for="iddomicilio" />
+                        <p:inputText id="iddomicilio" value="#{domicilioController.selected.iddomicilio}" title="#{bundle.EditDomicilioTitle_iddomicilio}" required="true" requiredMessage="#{bundle.EditDomicilioRequiredMessage_iddomicilio}"/>
+                        <p:outputLabel value="#{bundle.EditDomicilioLabel_placa}" for="placa" />
+                        <p:inputText id="placa" value="#{domicilioController.selected.placa}" title="#{bundle.EditDomicilioTitle_placa}" />
+                        <p:outputLabel value="#{bundle.EditDomicilioLabel_responsable}" for="responsable" />
+                        <p:inputText id="responsable" value="#{domicilioController.selected.responsable}" title="#{bundle.EditDomicilioTitle_responsable}" />
+                        <p:outputLabel value="#{bundle.EditDomicilioLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{domicilioController.selected.estado}" title="#{bundle.EditDomicilioTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditDomicilioLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{domicilioController.selected.usuario}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="usuarioItem" itemLabel="#{usuarioItem.nombre}"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{domicilioController.update}" value="#{bundle.Save}" update="display,:DomicilioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DomicilioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DomicilioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

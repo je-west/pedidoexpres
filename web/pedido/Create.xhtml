@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PedidoCreateDlg" widgetVar="PedidoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePedidoTitle}">
+            <h:form id="PedidoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pedidoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_idpedido}" for="idpedido" />
+                        <p:inputText id="idpedido" value="#{pedidoController.selected.idpedido}" title="#{bundle.CreatePedidoTitle_idpedido}" required="true" requiredMessage="#{bundle.CreatePedidoRequiredMessage_idpedido}"/>
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_fechaHoraEnt}" for="fechaHoraEnt" />
+                        <p:calendar id="fechaHoraEnt" pattern="dd/MM/yyyy HH:mm:ss" value="#{pedidoController.selected.fechaHoraEnt}" title="#{bundle.EditPedidoTitle_fechaHoraEnt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_fechaHoraSol}" for="fechaHoraSol" />
+                        <p:calendar id="fechaHoraSol" pattern="dd/MM/yyyy HH:mm:ss" value="#{pedidoController.selected.fechaHoraSol}" title="#{bundle.EditPedidoTitle_fechaHoraSol}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_latitudSol}" for="latitudSol" />
+                        <p:inputText id="latitudSol" value="#{pedidoController.selected.latitudSol}" title="#{bundle.CreatePedidoTitle_latitudSol}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_longitudSol}" for="longitudSol" />
+                        <p:inputText id="longitudSol" value="#{pedidoController.selected.longitudSol}" title="#{bundle.CreatePedidoTitle_longitudSol}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_latitudEnt}" for="latitudEnt" />
+                        <p:inputText id="latitudEnt" value="#{pedidoController.selected.latitudEnt}" title="#{bundle.CreatePedidoTitle_latitudEnt}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_longitudEnt}" for="longitudEnt" />
+                        <p:inputText id="longitudEnt" value="#{pedidoController.selected.longitudEnt}" title="#{bundle.CreatePedidoTitle_longitudEnt}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_direccionEnt}" for="direccionEnt" />
+                        <p:inputText id="direccionEnt" value="#{pedidoController.selected.direccionEnt}" title="#{bundle.CreatePedidoTitle_direccionEnt}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_valorBruto}" for="valorBruto" />
+                        <p:inputText id="valorBruto" value="#{pedidoController.selected.valorBruto}" title="#{bundle.CreatePedidoTitle_valorBruto}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_descuento}" for="descuento" />
+                        <p:inputText id="descuento" value="#{pedidoController.selected.descuento}" title="#{bundle.CreatePedidoTitle_descuento}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_iva}" for="iva" />
+                        <p:inputText id="iva" value="#{pedidoController.selected.iva}" title="#{bundle.CreatePedidoTitle_iva}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_fechaHoraDes}" for="fechaHoraDes" />
+                        <p:calendar id="fechaHoraDes" pattern="dd/MM/yyyy HH:mm:ss" value="#{pedidoController.selected.fechaHoraDes}" title="#{bundle.EditPedidoTitle_fechaHoraDes}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_observacion}" for="observacion" />
+                        <p:inputText id="observacion" value="#{pedidoController.selected.observacion}" title="#{bundle.CreatePedidoTitle_observacion}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_calificacion}" for="calificacion" />
+                        <p:inputText id="calificacion" value="#{pedidoController.selected.calificacion}" title="#{bundle.CreatePedidoTitle_calificacion}" />
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_nit}" for="nit" />
+                        <p:selectOneMenu id="nit" value="#{pedidoController.selected.nit}" >
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="nitItem" itemLabel="#{nitItem.razonSocial}"
+                                           itemValue="#{nitItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_iddomicilio}" for="iddomicilio" />
+                        <p:selectOneMenu id="iddomicilio" value="#{pedidoController.selected.iddomicilio}" >
+                            <f:selectItems value="#{domicilioController.itemsAvailableSelectOne}"
+                                           var="iddomicilioItem" itemLabel="#{iddomicilioItem.responsable}"
+                                           itemValue="#{iddomicilioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_idestado}" for="idestado" />
+                        <p:selectOneMenu id="idestado" value="#{pedidoController.selected.idestado}" >
+                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"
+                                           var="idestadoItem" itemLabel="#{idestadoItem.descripcion}"
+                                           itemValue="#{idestadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_idmedPago}" for="idmedPago" />
+                        <p:selectOneMenu id="idmedPago" value="#{pedidoController.selected.idmedPago}" >
+                            <f:selectItems value="#{medioPagoController.itemsAvailableSelectOne}"
+                                           var="idmedPagoItem" itemLabel="#{idmedPagoItem.descripcion}"
+                                           itemValue="#{idmedPagoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePedidoLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{pedidoController.selected.usuario}" >
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="usuarioItem" itemLabel="#{usuarioItem.nombre}"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pedidoController.create}" value="#{bundle.Save}" update="display,:PedidoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PedidoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PedidoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

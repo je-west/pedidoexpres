@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="materialize.css"/>
+        <h:outputStylesheet library="css" name="materialize.min.css"/>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputScript library="js" name="materialize.js"/>
+        <h:outputScript library="js" name="materialize.min.js"/>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <title>Facelet Title</title>
+
+
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <!--Menu Lateral-->
+
+        <div id="contenedor" >    
+            <nav>
+                <ul id="slide-out" class="side-nav">
+                    <li class="logo">
+                        <img class="logo" src="../img/Logo.png" width="180" height="100"/>
+                    </li>
+                    <li><a href="/index.xhtml">Inicio</a></li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header">Restaurantes</a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="/siigo/faces/recContrato/List.xhtml">Asados</a></li>
+                                        <li><a href="/siigo/faces/recElementoFormulario/List.xhtml">Comida Rapida</a></li>
+                                        <li><a href="/siigo/faces/recMaterial/List.xhtml">Comida Italiana</a></li>
+                                        <li><a href="/siigo/faces/recActividadCiiu/List.xhtml">Comida Oriental</a></li>
+                                        <li><a href="/siigo/faces/aotPdaParametrizacion/List.xhtml">Comida Tipica</a></li>
+                                        <li><a href="/siigo/faces/recActividad/List.xhtml">Comida Mexica</a></li>
+                                        <li><a href="/siigo/faces/recPrograma/List.xhtml">Comida de Mar</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#!">Licores</a></li>
+                    <li><a href="#!">Farmacias</a></li>
+                    <li><a href="#!">Mini Mercados</a></li>
+                    <li><a href="#!">Contactenos</a></li>  
+
+                </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+            </nav>
+
+        </div>
+
+        <ui:insert name="body"/>
+
+        <!--Iniciacion jQuery para materialize.js-->
+
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+
+            $(".button-collapse").sideNav();
+            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+            //$('.collapsible').collapsible();
+
+        </script>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductoxclienteCreateDlg" widgetVar="ProductoxclienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProductoxclienteTitle}">
+            <h:form id="ProductoxclienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{productoxclienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProductoxclienteLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{productoxclienteController.selected.precio}" title="#{bundle.CreateProductoxclienteTitle_precio}" />
+                        <p:outputLabel value="#{bundle.CreateProductoxclienteLabel_imagen}" for="imagen" />
+                        <p:inputText id="imagen" value="#{productoxclienteController.selected.imagen}" title="#{bundle.CreateProductoxclienteTitle_imagen}" />
+                        <p:outputLabel value="#{bundle.CreateProductoxclienteLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{productoxclienteController.selected.descripcion}" title="#{bundle.CreateProductoxclienteTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreateProductoxclienteLabel_detalle}" for="detalle" />
+                        <p:inputText id="detalle" value="#{productoxclienteController.selected.detalle}" title="#{bundle.CreateProductoxclienteTitle_detalle}" />
+                        <p:outputLabel value="#{bundle.CreateProductoxclienteLabel_habilitado}" for="habilitado" />
+                        <p:selectBooleanCheckbox id="habilitado" value="#{productoxclienteController.selected.habilitado}" />
+                        <p:outputLabel value="#{bundle.CreateProductoxclienteLabel_cliente}" for="cliente" />
+                        <p:selectOneMenu id="cliente" value="#{productoxclienteController.selected.cliente}" required="true" requiredMessage="#{bundle.EditProductoxclienteRequiredMessage_cliente}">
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteItem" itemLabel="#{clienteItem.razonSocial}"
+                                           itemValue="#{clienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProductoxclienteLabel_producto}" for="producto" />
+                        <p:selectOneMenu id="producto" value="#{productoxclienteController.selected.producto}" required="true" requiredMessage="#{bundle.EditProductoxclienteRequiredMessage_producto}">
+                            <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
+                                           var="productoItem" itemLabel="#{productoItem.nombre}"
+                                           itemValue="#{productoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProductoxclienteLabel_idtipo}" for="idtipo" />
+                        <p:selectOneMenu id="idtipo" value="#{productoxclienteController.selected.idtipo}" >
+                            <f:selectItems value="#{tipoController.itemsAvailableSelectOne}"
+                                           var="idtipoItem" itemLabel="#{idtipoItem.descripcion}"
+                                           itemValue="#{idtipoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{productoxclienteController.create}" value="#{bundle.Save}" update="display,:ProductoxclienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProductoxclienteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProductoxclienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

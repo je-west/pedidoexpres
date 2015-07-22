@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LogestadoCreateDlg" widgetVar="LogestadoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLogestadoTitle}">
+            <h:form id="LogestadoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{logestadoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLogestadoLabel_fechaHora}" for="fechaHora" />
+                        <p:calendar id="fechaHora" pattern="dd/MM/yyyy HH:mm:ss" value="#{logestadoController.selected.fechaHora}" title="#{bundle.EditLogestadoTitle_fechaHora}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateLogestadoLabel_estado}" for="estado" />
+                        <p:selectOneMenu id="estado" value="#{logestadoController.selected.estado}" required="true" requiredMessage="#{bundle.EditLogestadoRequiredMessage_estado}">
+                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"
+                                           var="estadoItem" itemLabel="#{estadoItem.descripcion}"
+                                           itemValue="#{estadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLogestadoLabel_pedido}" for="pedido" />
+                        <p:selectOneMenu id="pedido" value="#{logestadoController.selected.pedido}" required="true" requiredMessage="#{bundle.EditLogestadoRequiredMessage_pedido}">
+                            <f:selectItems value="#{pedidoController.itemsAvailableSelectOne}"
+                                           var="pedidoItem" itemLabel="#{pedidoItem.idpedido}"
+                                           itemValue="#{pedidoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{logestadoController.create}" value="#{bundle.Save}" update="display,:LogestadoListForm:datalist,:growl" oncomplete="handleSubmit(args,'LogestadoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LogestadoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateClienteTitle}">
+            <h:form id="ClienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_nit}" for="nit" />
+                        <p:inputText id="nit" value="#{clienteController.selected.nit}" title="#{bundle.CreateClienteTitle_nit}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_nit}"/>
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_razonSocial}" for="razonSocial" />
+                        <p:inputText id="razonSocial" value="#{clienteController.selected.razonSocial}" title="#{bundle.CreateClienteTitle_razonSocial}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_latitud}" for="latitud" />
+                        <p:inputText id="latitud" value="#{clienteController.selected.latitud}" title="#{bundle.CreateClienteTitle_latitud}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_longitud}" for="longitud" />
+                        <p:inputText id="longitud" value="#{clienteController.selected.longitud}" title="#{bundle.CreateClienteTitle_longitud}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{clienteController.selected.direccion}" title="#{bundle.CreateClienteTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.CreateClienteTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_fechaIng}" for="fechaIng" />
+                        <p:calendar id="fechaIng" pattern="dd/MM/yyyy HH:mm:ss" value="#{clienteController.selected.fechaIng}" title="#{bundle.EditClienteTitle_fechaIng}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_calificacion}" for="calificacion" />
+                        <p:inputText id="calificacion" value="#{clienteController.selected.calificacion}" title="#{bundle.CreateClienteTitle_calificacion}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_logo}" for="logo" />
+                        <p:inputText id="logo" value="#{clienteController.selected.logo}" title="#{bundle.CreateClienteTitle_logo}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_sucursal}" for="sucursal" />
+                        <p:selectBooleanCheckbox id="sucursal" value="#{clienteController.selected.sucursal}" />
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_idalterno}" for="idalterno" />
+                        <p:selectOneMenu id="idalterno" value="#{clienteController.selected.idalterno}" >
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="idalternoItem" itemLabel="#{idalternoItem.razonSocial}"
+                                           itemValue="#{idalternoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateClienteLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{clienteController.selected.usuario}" >
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="usuarioItem" itemLabel="#{usuarioItem.nombre}"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteController.create}" value="#{bundle.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
